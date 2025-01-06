@@ -1,57 +1,25 @@
+import Webpack from "webpack";
 import path from "path";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import { buildWebpack } from "./config/build/buildWebpack";
+import { BuildMode, BuildPath } from "./config/build/types";
 
-type Mode = "production" | "development";
-
-interface EnvVariables {
-  mode: Mode;
+export interface EnvVariables {
+  mode: BuildMode;
   port: number;
 }
 
 export default (env: EnvVariables) => {
-  return {
-    mode: env.mode ?? "development",
+  const paths: BuildPath = {
     entry: path.resolve(__dirname, "src", "index.tsx"),
-    output: {
-      path: path.resolve(__dirname, "build"),
-      filename: "[name].[contenthash].js",
-      clean: true,
-    },
-    plugins: [
-      new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, "public", "index.html"),
-      }),
-      new MiniCssExtractPlugin({
-        filename: "css/[name].[contenthash:8].css",
-        chunkFilename: "css/[name].[contenthash:8].css",
-      }),
-    ],
-
-    module: {
-      rules: [
-        {
-          test: /\.tsx?$/,
-          use: "ts-loader",
-          exclude: /node_modules/,
-        },
-        {
-          test: /\.s[ac]ss$/i,
-          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-        },
-      ],
-    },
-    resolve: {
-      extensions: [".tsx", ".ts", ".js"],
-    },
-    devtool: "inline-source-map",
-
-    devServer: {
-      static: {
-        directory: path.join(__dirname, "public"),
-      },
-      compress: true,
-      port: env.port ?? 8000,
-    },
+    output: path.resolve(__dirname, "build"),
+    html: path.resolve(__dirname, "public", "index.html"),
   };
+
+  const config: Webpack.Configuration = buildWebpack({
+    paths,
+    mode: env.mode ?? "development",
+    port: env.port ?? 3000,
+  });
+
+  return config;
 };
