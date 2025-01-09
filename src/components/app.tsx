@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import "./app.scss";
+import styles from "./styles.module.scss";
 
 interface PropsI {}
 
 export function App(props: PropsI) {
+  console.log(styles);
   const {} = props;
   const [count, setCount] = useState(0);
 
@@ -12,9 +13,11 @@ export function App(props: PropsI) {
   return (
     <div>
       Привет мир
-      <button onClick={decrement}>add</button>
+      <button className={styles.button} onClick={decrement}>
+        add
+      </button>
       <div>
-        <span>счётчик - </span>
+        <span className={styles.count}>счётчик - </span>
         {count}
       </div>
     </div>

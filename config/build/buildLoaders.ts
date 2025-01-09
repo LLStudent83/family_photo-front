@@ -11,11 +11,23 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
     exclude: /node_modules/,
   };
 
+  const cssLoaderWithModules = {
+    loader: "css-loader",
+    options: {
+      modules: {
+        namedExport: false,
+        localIdentName: isDev
+          ? "[path][name]__[local]--[hash:base64:8]"
+          : "[hash:base64:8]",
+      },
+    },
+  };
+
   const scssLoader = {
-    test: /\.s[ac]ss$/i,
+    test: /\.scss$/i,
     use: [
       isDev ? "style-loader" : MiniCssExtractPlugin.loader,
-      "css-loader",
+      cssLoaderWithModules,
       "sass-loader",
     ],
   };

@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ],
     "outDir": "./dist/",
     "noImplicitAny": true,
     "module": "es6",
@@ -9,6 +14,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true
   },
+
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
