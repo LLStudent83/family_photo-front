@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styles from "./styles.module.scss";
+import { Link, Outlet } from "react-router-dom";
+import rubl from "@/assets/rubl.png";
 
 interface PropsI {}
 
@@ -12,6 +14,14 @@ export function App(props: PropsI) {
 
   return (
     <div>
+      <nav>
+        <Link to={"/about"}>About</Link>
+        <br />
+        <Link to={"/shop"}>Shop</Link>
+      </nav>
+      <section>
+        <img src={rubl} alt="" />
+      </section>
       Привет мир
       <button className={styles.button} onClick={decrement}>
         add
@@ -20,6 +30,7 @@ export function App(props: PropsI) {
         <span className={styles.count}>счётчик - </span>
         {count}
       </div>
+      <Outlet />
     </div>
   );
 }
