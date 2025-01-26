@@ -6,7 +6,7 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
   const isDev = options.mode === "development";
 
   const assetsLoader = {
-    test: /\.(png|svg|jpg|jpeg|gif)$/i,
+    test: /\.(png|jpg|jpeg|gif)$/i,
     type: "asset/resource",
   };
 
@@ -14,6 +14,27 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
     test: /\.tsx?$/,
     use: "ts-loader",
     exclude: /node_modules/,
+  };
+
+  const svgLoader = {
+    test: /\.svg$/i,
+    issuer: [/\.(js|ts)x?$/, /\.jsx$/, /\.tsx$/],
+    use: [
+      {
+        loader: "@svgr/webpack",
+        options: {
+          icon: true,
+          svgoConfig: {
+            plugins: [
+              {
+                name: "convertColors",
+                params: { currentColor: true },
+              },
+            ],
+          },
+        },
+      },
+    ],
   };
 
   const cssLoaderWithModules = {
@@ -36,5 +57,5 @@ export function buildLoaders(options: BuildOptions): ModuleOptions["rules"] {
       "sass-loader",
     ],
   };
-  return [tsLoader, scssLoader, assetsLoader];
+  return [tsLoader, scssLoader, assetsLoader, svgLoader];
 }

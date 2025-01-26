@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import styles from "./styles.module.scss";
 import { Link, Outlet } from "react-router-dom";
-import rubl from "@/assets/rubl.png";
+import rublPng from "@/assets/rublPng.png";
+import rublJpg from "@/assets/rublJpg.jpg";
+import RublSvg from "@/assets/rublSvg.svg";
 
 interface PropsI {}
 
@@ -20,7 +22,9 @@ export function App(props: PropsI) {
         <Link to={"/shop"}>Shop</Link>
       </nav>
       <section>
-        <img src={rubl} alt="" />
+        <img src={rublPng} alt="" />
+        <img src={rublJpg} alt="" />
+        <RublSvg color={"red"} width={100} height={100} />
       </section>
       Привет мир
       <button className={styles.button} onClick={decrement}>
