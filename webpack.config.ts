@@ -1,16 +1,18 @@
 import Webpack from "webpack";
 import path from "path";
 import { buildWebpack } from "./config/build/buildWebpack";
-import type { BuildMode, BuildPath } from "./config/build/types";
+import type { BuildMode, BuildPath, Platform } from "./config/build/types";
 
 export interface EnvVariables {
   mode: BuildMode;
   port: number;
   analyzer: boolean;
+  platform?: Platform;
 }
 
 export default (env: EnvVariables) => {
   console.log("env", env);
+
   const paths: BuildPath = {
     entry: path.resolve(__dirname, "src", "index.tsx"),
     output: path.resolve(__dirname, "build"),
@@ -23,6 +25,7 @@ export default (env: EnvVariables) => {
     mode: env.mode ?? "development",
     port: env.port ?? 3000,
     analyzer: env.analyzer,
+    platform: env.platform ?? "browser",
   });
 
   return config;

@@ -5,6 +5,10 @@ import rublPng from "@/assets/rublPng.png";
 import rublJpg from "@/assets/rublJpg.jpg";
 import RublSvg from "@/assets/rublSvg.svg";
 
+const todo = (id: number) => {
+  console.log(id);
+};
+
 interface PropsI {}
 
 export function App(props: PropsI) {
@@ -12,10 +16,13 @@ export function App(props: PropsI) {
   const {} = props;
   const [count, setCount] = useState(0);
 
+  todo(12);
+
   const decrement = () => setCount((prev) => prev + 1);
 
   return (
     <div>
+      <h1>platform {__PLATFORM__}</h1>
       <nav>
         <Link to={"/about"}>About</Link>
         <br />
