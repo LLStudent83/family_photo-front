@@ -4,6 +4,7 @@ import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import webpack, { Configuration, DefinePlugin } from "webpack";
 import { BuildOptions } from "./types";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 
 export function buildPlugins({
   mode,
@@ -30,6 +31,7 @@ export function buildPlugins({
 
   if (isDev) {
     plugins.push(new webpack.ProgressPlugin());
+    plugins.push(new ReactRefreshWebpackPlugin());
   }
 
   if (isProd) {

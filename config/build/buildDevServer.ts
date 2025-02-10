@@ -10,5 +10,6 @@ export function buildDevServer({ port }: BuildOptions): DevServerConfiguration {
     compress: true,
     port: port ?? 3000,
     historyApiFallback: true,
+    hot: true,
   };
 }

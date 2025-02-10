@@ -22,7 +22,7 @@ export function App(props: PropsI) {
 
   return (
     <div>
-      <h1>platform {__PLATFORM__}</h1>
+      <h1 style={{ color: "black" }}>platform {__PLATFORM__}</h1>
       <nav>
         <Link to={"/about"}>About</Link>
         <br />
