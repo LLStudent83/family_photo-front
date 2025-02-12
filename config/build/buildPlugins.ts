@@ -1,5 +1,6 @@
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import path from "path";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import webpack, { Configuration, DefinePlugin } from "webpack";
 import { BuildOptions } from "./types";
@@ -18,6 +19,7 @@ export function buildPlugins({
   const plugins: Configuration["plugins"] = [
     new HtmlWebpackPlugin({
       template: paths.html,
+      favicon: path.resolve(paths.public, "favicon.svg"),
     }),
 
     /* Прокидывает в код приложения переменные которые заданы через командную строку во время компиляции*/
