@@ -28,7 +28,7 @@ export function App(props: PropsI) {
         <br />
         <Link to={"/shop"}>Shop</Link>
       </nav>
-      <section>
+      <section data-testid="imagesSection">
         <img src={rublPng} alt="" />
         <img src={rublJpg} alt="" />
         <RublSvg color={"red"} width={100} height={100} />
