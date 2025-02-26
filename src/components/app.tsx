@@ -5,20 +5,23 @@ import rublPng from "@/assets/rublPng.png";
 import rublJpg from "@/assets/rublJpg.jpg";
 import RublSvg from "@/assets/rublSvg.svg";
 
-const todo = (id: number) => {
-  console.log(id);
+const error = () => {
+  throw new Error("моя ошибка");
+};
+
+const getError = () => {
+  error();
 };
 
 interface PropsI {}
 
 export function App(props: PropsI) {
-  console.log(styles);
   const {} = props;
   const [count, setCount] = useState(0);
 
-  todo(12);
-
   const decrement = () => setCount((prev) => prev + 1);
+
+  const handlerClick = () => getError();
 
   return (
     <div>
@@ -37,6 +40,7 @@ export function App(props: PropsI) {
       <button className={styles.button} onClick={decrement}>
         add
       </button>
+      <button onClick={handlerClick}>Получить ошибку</button>
       <div>
         <span className={styles.count}>счётчик - </span>
         {count}

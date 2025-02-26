@@ -7,6 +7,7 @@ import { BuildOptions } from "./types";
 
 export function buildWebpack(options: BuildOptions): webpack.Configuration {
   const { paths, mode } = options;
+  const isDev = mode === "development";
 
   return {
     mode: mode ?? "development",
@@ -22,7 +23,7 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
       rules: buildLoaders(options),
     },
     resolve: buildResolve(options),
-    devtool: "inline-source-map",
+    devtool: isDev && "inline-source-map",
 
     devServer: buildDevServer(options),
   };
