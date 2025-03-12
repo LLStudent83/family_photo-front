@@ -6,8 +6,8 @@ interface PropsI {}
 export function App() {
   return (
     <div>
-      <h1>App</h1>
-      <Link to="/about">About</Link>
+      <h1>Root App</h1>
+      <Link to="/admin">Admin</Link>
       <br />
       <Link to="/shop">Shop</Link>
       <Outlet />
