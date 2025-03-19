@@ -1,7 +1,7 @@
 {
-  "name": "shop",
+  "name": "show",
   "version": "1.0.0",
-  "main": "./src/index.ts",
+  "main": "./src/app/index.ts",
   "scripts": {
     "build:dev": "webpack --env mode=development",
     "build:prod": "webpack --env mode=production",

@@ -15,7 +15,7 @@ export interface EnvVariables {
 
 export default (env: EnvVariables) => {
   const paths: BuildPath = {
-    entry: path.resolve(__dirname, "src", "index.tsx"),
+    entry: path.resolve(__dirname, "src", "app", "index.tsx"),
     output: path.resolve(__dirname, "build"),
     html: path.resolve(__dirname, "public", "index.html"),
     public: path.resolve(__dirname, "public"),
@@ -39,7 +39,7 @@ export default (env: EnvVariables) => {
       filename: "remoteEntry.js",
 
       remotes: {
-        shop: `shop@${SHOP_REMOTE_URL}/remoteEntry.js`,
+        show: `show@${SHOP_REMOTE_URL}/remoteEntry.js`,
         admin: `admin@${ADMIN_REMOTE_URL}/remoteEntry.js`,
       },
       shared: {

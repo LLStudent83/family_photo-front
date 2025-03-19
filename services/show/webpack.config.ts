@@ -15,7 +15,7 @@ export default (env: EnvVariables) => {
   console.log("env", env);
 
   const paths: BuildPath = {
-    entry: path.resolve(__dirname, "src", "index.tsx"),
+    entry: path.resolve(__dirname, "src", "app", "index.tsx"),
     output: path.resolve(__dirname, "build"),
     html: path.resolve(__dirname, "public", "index.html"),
     public: path.resolve(__dirname, "public"),
@@ -32,10 +32,10 @@ export default (env: EnvVariables) => {
 
   config.plugins.push(
     new Webpack.container.ModuleFederationPlugin({
-      name: "shop",
+      name: "show",
       filename: "remoteEntry.js",
       exposes: {
-        "./Router": "./src/router/Router.tsx",
+        "./Router": "./src/app/router/Router.tsx",
       },
       shared: {
         ...packageJson.dependencies,
